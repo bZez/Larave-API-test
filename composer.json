@@ -51,7 +51,7 @@
       "@php artisan key:generate --ansi"
     ],
     "phpstan": [
-      "devtools/phpstan/phpstan analyse app"
+      "devtools/phpstan/vendor/bin/phpstan analyse app"
     ],
     "php-cs-fixer": [
       "devtools/php-cs-fixer/vendor/bin/php-cs-fixer fix app --rules=@Symfony,@Symfony:risky --allow-risky=yes",

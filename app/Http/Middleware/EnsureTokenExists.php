@@ -25,7 +25,9 @@ final class EnsureTokenExists
             {
                 $qb->whereAccessTokenIs($request->bearerToken());
             })->first();
-        $request->setUserResolver(function () use ($operator) { return $operator; });
+        $request->setUserResolver(function () use ($operator) {
+            return $operator;
+        });
         if (null === $request->user()) {
             return new Response(null, 401);
         }
