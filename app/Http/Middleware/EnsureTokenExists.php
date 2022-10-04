@@ -21,8 +21,10 @@ final class EnsureTokenExists
             return new Response(null, 401);
         }
         $operator = Operator::query()
-            ->tap(fn (OperatorBuilder $b) => $b->whereAccessTokenIs($request->bearerToken()))
-            ->first();
+            ->tap(function (OperatorBuilder $qb)use($request):void
+            {
+                $qb->whereAccessTokenIs($request->bearerToken());
+            })->first();
         $request->setUserResolver(function () use ($operator) { return $operator; });
         if (null === $request->user()) {
             return new Response(null, 401);

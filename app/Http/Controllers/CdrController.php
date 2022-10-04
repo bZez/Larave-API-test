@@ -40,11 +40,11 @@ class CdrController extends Controller
     public function show(Request $request, string $ref): Response|JsonResponse
     {
         $cdr = Cdr::query()
-            ->tap(fn (CdrBuilder $b) => $b
-                ->whereRef($ref)
-                ->whereOperatorIs($request->user())
-            )
-            ->first();
+            ->tap(function(CdrBuilder $qb) use ($ref,$request):void  {
+                $qb
+                    ->whereRef($ref)
+                    ->whereOperatorIs($request->user());
+            })->first();
         if (null !== $cdr ) {
             return new JsonResponse(new CdrResource($cdr));
         }
