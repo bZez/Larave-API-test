@@ -13,7 +13,7 @@ use Illuminate\Http\Response;
 class CdrController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Route : PUT /ocpi/cdrs
      */
     public function store(StoreCdrRequest $request): Response|JsonResponse
     {
@@ -35,7 +35,7 @@ class CdrController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Route : GET /ocpi/cdrs/{ref}
      */
     public function show(Request $request, string $ref): Response|JsonResponse
     {
@@ -45,7 +45,7 @@ class CdrController extends Controller
                     ->whereRef($ref)
                     ->whereOperatorIs($request->user());
             })->first();
-        if (null !== $cdr ) {
+        if (null !== $cdr) {
             return new JsonResponse(new CdrResource($cdr));
         }
 
