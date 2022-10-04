@@ -123,12 +123,17 @@ class GlobalTest extends TestCase
      */
     public function testGetCdrsRouteGoodBearerGoodRefNotEvseOwner(): void
     {
+        // arrange
         $operator = OperatorFactory::new()->create();
         $badCdr = CdrFactory::new()->makeOne();
+
+        // act
         $response = self::withHeader('Authorization', 'Bearer '.$operator->access_token)
             ->get('/ocpi/cdrs/'.$badCdr->ref);
         $operator->delete();
         $badCdr->evse->operator->delete();
+
+        // assert
         $response->assertNoContent(401);
     }
 
@@ -137,10 +142,15 @@ class GlobalTest extends TestCase
      */
     public function testGetCdrsRouteGoodBearerGoodRefEvseOwner(): void
     {
+        // arrange
         $goodCdr = CdrFactory::new()->create();
+
+        // act
         $response = self::withHeader('Authorization', 'Bearer '.$goodCdr->evse->operator->access_token)
             ->getJson('/ocpi/cdrs/'.$goodCdr->ref);
         $goodCdr->evse->operator->delete();
+
+        // assert
         $response->assertExactJson([
             'id' => $goodCdr->ref,
             'evse_uid' => $goodCdr->evse->ref,
@@ -156,6 +166,7 @@ class GlobalTest extends TestCase
      */
     public function testPutCdrsRouteGoodBearerGoodRefNotEvseOwner(): void
     {
+        // arrange
         $badEvse = EvseFactory::new()->create();
         $goodCdr = CdrFactory::new()->create();
         $data = [
@@ -166,10 +177,14 @@ class GlobalTest extends TestCase
             'total_energy' => rand(1, 1000),
             'total_cost' => rand(1, 10000),
         ];
+
+        // act
         $response = self::withHeader('Authorization', 'Bearer '.$goodCdr->evse->operator->access_token)
             ->putJson('/ocpi/cdrs', $data);
         $goodCdr->evse->operator->delete();
         $badEvse->operator->delete();
+
+        //assert
         $response->assertNoContent(404);
     }
 
@@ -178,6 +193,7 @@ class GlobalTest extends TestCase
      */
     public function testPutCdrsRouteGoodBearerNewRefEvseOwner(): void
     {
+        // arrange
         $evse = EvseFactory::new()->create();
         $data = [
             'id' => Str::random(36),
@@ -187,9 +203,13 @@ class GlobalTest extends TestCase
             'total_energy' => rand(1, 1000),
             'total_cost' => rand(1, 10000),
         ];
+
+        // act
         $response = self::withHeader('Authorization', 'Bearer '.$evse->operator->access_token)
             ->putJson('/ocpi/cdrs', $data);
         $evse->operator->delete();
+
+        // assert
         $response->assertExactJson($data);
     }
 
@@ -198,6 +218,7 @@ class GlobalTest extends TestCase
      */
     public function testPutCdrsRouteGoodBearerGoodRefEvseOwnerGoodJsonStructure(): void
     {
+        // arrange
         $goodCdr = CdrFactory::new()->create();
         $data = [
             'id' => $goodCdr->ref,
@@ -207,9 +228,13 @@ class GlobalTest extends TestCase
             'total_energy' => rand(1, 1000),
             'total_cost' => rand(1, 10000),
         ];
+
+        // act
         $response = self::withHeader('Authorization', 'Bearer '.$goodCdr->evse->operator->access_token)
             ->putJson('/ocpi/cdrs', $data);
         $goodCdr->evse->operator->delete();
+
+        // assert
         $response->assertExactJson($data);
     }
 
@@ -218,6 +243,7 @@ class GlobalTest extends TestCase
      */
     public function testPutCdrsRouteGoodBearerGoodRefEvseOwnerBadJsonStructure(): void
     {
+        // arrange
         $goodCdr = CdrFactory::new()->create();
         $data = [
             'id' => $goodCdr->ref,
@@ -227,9 +253,13 @@ class GlobalTest extends TestCase
             'total_energy' => rand(1, 1000),
             'total_cost' => rand(1, 10000),
         ];
+
+        // act
         $response = self::withHeader('Authorization', 'Bearer '.$goodCdr->evse->operator->access_token)
             ->putJson('/ocpi/cdrs', $data);
         $goodCdr->evse->operator->delete();
+
+        // assert
         $response->assertNoContent(404);
     }
 }
