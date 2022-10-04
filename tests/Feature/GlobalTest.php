@@ -95,7 +95,7 @@ class GlobalTest extends TestCase
     }
 
     /**
-     * Route : GET /ocpi/cdrs/{cdr_id}.
+     * Route : GET /ocpi/cdrs/{ref}.
      */
     public function testGetCdrsRouteGoodBearerBadRef(): void
     {
@@ -107,7 +107,7 @@ class GlobalTest extends TestCase
     }
 
     /**
-     * Route : GET /ocpi/cdrs/{cdr_id}.
+     * Route : GET /ocpi/cdrs/{ref}.
      */
     public function testGetCdrsRouteBadBearerAndGoodRef(): void
     {
@@ -119,7 +119,7 @@ class GlobalTest extends TestCase
     }
 
     /**
-     * Route : GET /ocpi/cdrs/{cdr_id}.
+     * Route : GET /ocpi/cdrs/{ref}.
      */
     public function testGetCdrsRouteGoodBearerGoodRefNotEvseOwner(): void
     {
@@ -138,7 +138,7 @@ class GlobalTest extends TestCase
     }
 
     /**
-     * Route : GET /ocpi/cdrs/{cdr_id}.
+     * Route : GET /ocpi/cdrs/{ref}.
      */
     public function testGetCdrsRouteGoodBearerGoodRefEvseOwner(): void
     {
@@ -162,7 +162,7 @@ class GlobalTest extends TestCase
     }
 
     /**
-     * Route : PUT /ocpi/cdrs/{cdr_id}.
+     * Route : PUT /ocpi/cdrs
      */
     public function testPutCdrsRouteGoodBearerGoodRefNotEvseOwner(): void
     {
@@ -189,7 +189,7 @@ class GlobalTest extends TestCase
     }
 
     /**
-     * Route : PUT /ocpi/cdrs/{cdr_id}.
+     * Route : PUT /ocpi/cdrs
      */
     public function testPutCdrsRouteGoodBearerNewRefEvseOwner(): void
     {
@@ -214,7 +214,7 @@ class GlobalTest extends TestCase
     }
 
     /**
-     * Route : PUT /ocpi/cdrs/{cdr_id}.
+     * Route : PUT /ocpi/cdrs
      */
     public function testPutCdrsRouteGoodBearerGoodRefEvseOwnerGoodJsonStructure(): void
     {
@@ -239,7 +239,7 @@ class GlobalTest extends TestCase
     }
 
     /**
-     * Route : PUT /ocpi/cdrs/{cdr_id}.
+     * Route : PUT /ocpi/cdrs
      */
     public function testPutCdrsRouteGoodBearerGoodRefEvseOwnerBadJsonStructure(): void
     {
