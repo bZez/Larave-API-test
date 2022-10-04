@@ -17,14 +17,14 @@ final class EnsureTokenExists
      */
     public function handle(Request $request, Closure $next): Response|JsonResponse|RedirectResponse
     {
-        if (!$request->bearerToken()) {
+        if (null === $request->bearerToken()) {
             return new Response(null, 401);
         }
         $operator = Operator::query()
             ->tap(fn (OperatorBuilder $b) => $b->whereAccessTokenIs($request->bearerToken()))
             ->first();
         $request->setUserResolver(function () use ($operator) { return $operator; });
-        if (!$request->user()) {
+        if (null === $request->user()) {
             return new Response(null, 401);
         }
 

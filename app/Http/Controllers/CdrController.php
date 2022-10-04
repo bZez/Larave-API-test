@@ -19,7 +19,7 @@ class CdrController extends Controller
     {
         $validated = $request->validated();
         $evse = $request->user()->evses()->whereRef($validated['evse_uid'])->first();
-        if (!$evse) {
+        if (null === $evse) {
             return new Response(null, 404);
         }
         $cdr = $evse->cdrs()->whereRef($validated['id'])->firstOrNew();
@@ -45,7 +45,7 @@ class CdrController extends Controller
                 ->whereOperatorIs($request->user())
             )
             ->first();
-        if ($cdr) {
+        if (null !== $cdr ) {
             return new JsonResponse(new CdrResource($cdr));
         }
 
