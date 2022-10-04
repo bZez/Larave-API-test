@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class CdrBuilder extends Builder
 {
-    /**
-     * @return $this
-     */
+    /** @return $this */
     public function whereRef(string $ref): self
     {
         return $this->where('ref', '=', $ref);

@@ -13,8 +13,6 @@ class DateTimeCast implements CastsAttributes
     public const DATE_TIME_FORMAT = 'Y-m-d\TH:i:s\Z';
 
     /**
-     * Cast the given value.
-     *
      * @param Model       $model
      * @param string      $value
      * @param array<Type> $attributes
@@ -29,8 +27,6 @@ class DateTimeCast implements CastsAttributes
     }
 
     /**
-     * Prepare the given value for storage.
-     *
      * @param Model       $model
      * @param mixed       $value
      * @param array<Type> $attributes

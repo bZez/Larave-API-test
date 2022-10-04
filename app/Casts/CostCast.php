@@ -9,8 +9,6 @@ use PHPUnit\Util\Type;
 class CostCast implements CastsAttributes
 {
     /**
-     * Cast the given value.
-     *
      * @param Model       $model
      * @param mixed       $value
      * @param array<Type> $attributes
@@ -21,8 +19,6 @@ class CostCast implements CastsAttributes
     }
 
     /**
-     * Prepare the given value for storage.
-     *
      * @param Model       $model
      * @param float       $value
      * @param array<Type> $attributes

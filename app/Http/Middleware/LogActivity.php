@@ -11,9 +11,6 @@ use Illuminate\Support\Facades\Log;
 
 final class LogActivity
 {
-    /**
-     * Handle an incoming request.
-     */
     public function handle(Request $request, Closure $next): Response|RedirectResponse|JsonResponse
     {
         $response = $next($request);

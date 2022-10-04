@@ -13,7 +13,7 @@ use Illuminate\Http\Response;
 class CdrController extends Controller
 {
     /**
-     * Route : PUT /ocpi/cdrs
+     * Route : PUT /ocpi/cdrs.
      */
     public function store(StoreCdrRequest $request): Response|JsonResponse
     {
@@ -35,12 +35,12 @@ class CdrController extends Controller
     }
 
     /**
-     * Route : GET /ocpi/cdrs/{ref}
+     * Route : GET /ocpi/cdrs/{ref}.
      */
     public function show(Request $request, string $ref): Response|JsonResponse
     {
         $cdr = Cdr::query()
-            ->tap(function(CdrBuilder $qb) use ($ref,$request):void  {
+            ->tap(function (CdrBuilder $qb) use ($ref, $request): void {
                 $qb
                     ->whereRef($ref)
                     ->whereOperatorIs($request->user());

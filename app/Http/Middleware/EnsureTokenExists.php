@@ -12,17 +12,13 @@ use Illuminate\Http\Response;
 
 final class EnsureTokenExists
 {
-    /**
-     * Handle an incoming request.
-     */
     public function handle(Request $request, Closure $next): Response|JsonResponse|RedirectResponse
     {
         if (null === $request->bearerToken()) {
             return new Response(null, 401);
         }
         $operator = Operator::query()
-            ->tap(function (OperatorBuilder $qb)use($request):void
-            {
+            ->tap(function (OperatorBuilder $qb) use ($request): void {
                 $qb->whereAccessTokenIs($request->bearerToken());
             })->first();
         $request->setUserResolver(function () use ($operator) {

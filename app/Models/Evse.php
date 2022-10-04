@@ -22,9 +22,7 @@ class Evse extends Model
 {
     protected $fillable = ['operator_id', 'ref', 'address', 'created_at', 'updated_at'];
 
-    /**
-     * @var array<string>
-     */
+    /** @var array<string> */
     protected $with = ['operator'];
 
     public function cdrs(): HasMany
@@ -37,9 +35,7 @@ class Evse extends Model
         return $this->belongsTo('App\Models\Operator');
     }
 
-    /**
-     * @param Builder $query
-     */
+    /** @param Builder $query */
     public function newEloquentBuilder($query): EvseBuilder
     {
         return new EvseBuilder($query);

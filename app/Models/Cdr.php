@@ -27,13 +27,10 @@ class Cdr extends Model
 {
     protected $fillable = ['evse_id', 'ref', 'start_datetime', 'end_datetime', 'total_energy', 'total_cost', 'created_at', 'updated_at'];
 
-    /**
-     * @var array<string>
-     */
+    /** @var array<string> */
     protected $with = ['evse'];
-    /**
-     * @var array<string>
-     */
+
+    /** @var array<string> */
     protected $casts = [
         'start_datetime' => DateTimeCast::class,
         'end_datetime' => DateTimeCast::class,

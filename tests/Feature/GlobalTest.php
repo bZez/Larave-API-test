@@ -162,7 +162,7 @@ class GlobalTest extends TestCase
     }
 
     /**
-     * Route : PUT /ocpi/cdrs
+     * Route : PUT /ocpi/cdrs.
      */
     public function testPutCdrsRouteGoodBearerGoodRefNotEvseOwner(): void
     {
@@ -184,12 +184,12 @@ class GlobalTest extends TestCase
         $goodCdr->evse->operator->delete();
         $badEvse->operator->delete();
 
-        //assert
+        // assert
         $response->assertNoContent(404);
     }
 
     /**
-     * Route : PUT /ocpi/cdrs
+     * Route : PUT /ocpi/cdrs.
      */
     public function testPutCdrsRouteGoodBearerNewRefEvseOwner(): void
     {
@@ -214,7 +214,7 @@ class GlobalTest extends TestCase
     }
 
     /**
-     * Route : PUT /ocpi/cdrs
+     * Route : PUT /ocpi/cdrs.
      */
     public function testPutCdrsRouteGoodBearerGoodRefEvseOwnerGoodJsonStructure(): void
     {
@@ -239,7 +239,7 @@ class GlobalTest extends TestCase
     }
 
     /**
-     * Route : PUT /ocpi/cdrs
+     * Route : PUT /ocpi/cdrs.
      */
     public function testPutCdrsRouteGoodBearerGoodRefEvseOwnerBadJsonStructure(): void
     {

@@ -20,9 +20,7 @@ class Operator extends Model
 {
     protected $fillable = ['name', 'access_token', 'created_at', 'updated_at'];
 
-    /**
-     * @var array<string>
-     */
+    /** @var array<string> */
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
@@ -33,9 +31,7 @@ class Operator extends Model
         return $this->hasMany('App\Models\Evse');
     }
 
-    /**
-     * @param Builder $query
-     */
+    /** @param Builder $query */
     public function newEloquentBuilder($query): OperatorBuilder
     {
         return new OperatorBuilder($query);
